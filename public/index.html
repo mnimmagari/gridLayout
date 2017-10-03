@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<base href="/">
+
+	<title>Starter Node and Angular</title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css"> <!-- custom styles -->
+
+	<!-- JS -->
+	<script src="libs/angular/angular.min.js"></script>
+	<script src="libs/angular-route/angular-route.min.js"></script>
+
+	<!-- ANGULAR CUSTOM -->
+	<script src="js/app.js"></script>
+	<script src="js/controllers/MainController.js"></script>
+	<script src="js/controllers/userController.js"></script>
+	<script src="js/appRoutes.js"></script>
+
+	<script src="directives/pagination/pagin.js"></script>
+	<script src="directives/layout/layout.js"></script>
+
+
+</head>
+<body ng-app="mapp" >
+<div class="container">
+	
+	<!-- HEADER -->
+	<nav class="navbar navbar-inverse">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/">main</a>
+		</div>
+		<div class="nav navbar-nav">
+			<li><a href="/user">user</a></li>
+		</div>
+	</nav>
+
+	<!-- ANGULAR DYNAMIC CONTENT -->
+	<div ng-view></div>
+
+</div>
+</body>
+</html>
