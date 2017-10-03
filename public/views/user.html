@@ -1,0 +1,14 @@
+<div ng-app="userApp">
+	
+	<div class="row">
+		<div class="col-xs-4">
+			<label for="search">Search:</label>
+			<input ng-model="q" id="search" class="form-control" placeholder="Filter text">
+		</div>
+	</div>
+	<br>
+	<div ui-layout="user in users | filter:q | itemsPerPage: itemsPerPage" total-items="totalcount" current-page="currentPage" card-layout data="user"></div>
+	<br>
+	<div class="container"><ui-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)"></ui-controls></div>
+	
+</div>
