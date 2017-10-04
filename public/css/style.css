@@ -1,31 +1,106 @@
-body { 
-	padding:0px; 
-	margin: 0;
-	position: relative;
-	width: 100%;
+body, html {
+	width: 100%
 	height: 100%;
+	padding: 0;
 }
-.container{ 
-	width: 100%;
-	height: 100%;
+
+.container {
+	margin-top:3px;   
+	height:100%; 
+	width:100%;
 }
 .glyphicon {  margin-bottom: 10px;margin-right: 10px;}
 
-small {
-	display: block;
-	line-height: 1.428571429;
-	color: black;
-}
 .def{
 	background-color: grey;
 }
 .cust {
-	background:  #ABEBC6;  
+	background:  #8cd98c;  
 }
 .emp {
-	background:  #A9CCE3;   
+	background:  #9fc3c6;  
 }
-.space{
-	background-color: white;
 
+
+.ttilebrief{
+	background-color: #f0f0f0;
+}
+.ttilelong{
+	background-color: #9fc3c6;
+}
+.tileblock {
+	height:150px;
+	margin-bottom: 10px;
+	border: 1px solid #d9d9d9;
+	border-radius: 4px;
+	padding: 10px;
+	-webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 0 1px 1px #fff;
+	box-shadow: 0 0 1px 1px rgba(0, 0, 0, .05);
+	color: #000000;
+	border-top: 4px solid #000000;
+}
+
+.title-job{
+	color:  #000!important;
+	font-size: 1.2em;
+	font-family: "gtWalsheimBold", Arial, sans-serif;
+	font-weight: bold !important;
+	text-transform: capitalize;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	white-space: nowrap;
+	-ms-overflow-style: none;  // IE 10+
+	overflow: -moz-scrollbars-none;  // Firefox
+
+}
+.title-job::-webkit-scrollbar { 
+	display: none; 
+}
+.title-job a{
+	color: #000;
+}
+.pmargin{
+	margin:0 0 5px;
+}
+.text-small{
+	font-size: 12px;
+	color:black;
+	font-family:calibri;
+}
+
+.text-xsmall{
+	font-size: 10px;
+	color:black;
+	font-family:calibri;
+}
+
+
+.text-desc{
+	font-size: 18spx;
+	font-family:calibri;
+	color:black;
+}
+.hrstyle{
+	color:#000000;
+	margin:2px;
+	padding:3px;
+	border-top: 1px solid #000000;
+}
+.maxlines {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	line-height: 16px;     /* fallback */
+	max-height: 32px;      /* fallback */
+	min-height: 32px;
+	-webkit-line-clamp: 2; /* number of lines to show */
+	-webkit-box-orient: vertical;
+	padding-top: 3px;
+}
+
+.linecol{
+	color:#000000;
+	height:120px;
+	border-right: 1px solid #000000;
 }

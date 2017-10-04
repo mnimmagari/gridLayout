@@ -1,7 +1,6 @@
 var path            = require('path');
 var mongoose        = require('mongoose'), Schema = mongoose.Schema;
 
-// See http://mongoosejs.com/docs/schematypes.html
 
 var userSchema = new Schema({
   name             : {

@@ -1,29 +1,29 @@
 
 (function() {
-    var moduleName = 'angular-ui-layout';
+    var moduleName = 'angular-pagin-layout';
     var DEFAULT_ID = '__default';
 
     angular.module(moduleName, [])
-    .directive('uiLayout', ['$compile', '$parse', 'paginationService', uiLayoutDirective])
-    .directive('uiLayoutNoCompile', noCompileDirective)
-    .directive('uiControls', ['paginationService', 'paginationTemplate', uiControlsDirective])
+    .directive('paginLayout', ['$compile', '$parse', 'paginationService', paginLayoutDirective])
+    .directive('paginLayoutNoCompile', noCompileDirective)
+    .directive('paginControls', ['paginationService', 'paginationTemplate', paginControlsDirective])
     .filter('itemsPerPage', ['paginationService', itemsPerPageFilter])
     .service('paginationService', paginationService)
     .provider('paginationTemplate', paginationTemplateProvider)
-    .run(['$templateCache',uiControlsTemplateInstaller]);
+    .run(['$templateCache',paginControlsTemplateInstaller]);
 
-    function uiLayoutDirective($compile, $parse, paginationService) {
+    function paginLayoutDirective($compile, $parse, paginationService) {
 
         return  {
             terminal: true,
             multiElement: true,
             priority: 100,
-            compile: uiCompileFn
+            compile: paginCompileFn
         };
 
-        function uiCompileFn(tElement, tAttrs){
+        function paginCompileFn(tElement, tAttrs){
 
-            var expression = tAttrs.uiLayout;
+            var expression = tAttrs.paginLayout;
             var match = expression.match(/^\s*([\s\S]+?)\s+in\s+([\s\S]+?)(?:\s+as\s+([\s\S]+?))?(?:\s+track\s+by\s+([\s\S]+?))?\s*$/);
 
             var filterPattern = /\|\s*itemsPerPage\s*:\s*(.*\(\s*\w*\)|([^\)]*?(?=\s+as\s+))|[^\)]*)/;
@@ -38,7 +38,7 @@
             var rawId = tAttrs.paginationId || DEFAULT_ID;
             paginationService.registerInstance(rawId);
 
-            return function uiLinkFn(scope, element, attrs){
+            return function paginLinkFn(scope, element, attrs){
 
 
                 var paginationId = $parse(attrs.paginationId)(scope) || attrs.paginationId || DEFAULT_ID;
@@ -77,7 +77,7 @@
                 }
 
                 compiled(scope);
-                scope.$on('$destroy', function destroyui() {
+                scope.$on('$destroy', function destroypagin() {
                     paginationService.deregisterInstance(paginationId);
                 });
             };
@@ -97,8 +97,8 @@
         }
 
         function addNgRepeatToElement(element, attrs, repeatExpression) {
-            if (element[0].hasAttribute('ui-layout-start') || element[0].hasAttribute('data-ui-layout-start')) {
-                // using multiElement mode (ui-layout-start, ui-layout-end)
+            if (element[0].hasAttribute('pagin-layout-start') || element[0].hasAttribute('data-pagin-layout-start')) {
+                // using multiElement mode (pagin-layout-start, pagin-layout-end)
                 attrs.$set('ngRepeatStart', repeatExpression);
                 element.eq(element.length - 1).attr('ng-repeat-end', true);
             } else {
@@ -109,7 +109,7 @@
         function addNoCompileAttributes(tElement) {
             angular.forEach(tElement, function(el) {
                 if (el.nodeType === 1) {
-                    angular.element(el).attr('ui-layout-no-compile', true);
+                    angular.element(el).attr('pagin-layout-no-compile', true);
                 }
             });
         }
@@ -117,11 +117,11 @@
         function removeTemporaryAttributes(element) {
             angular.forEach(element, function(el) {
                 if (el.nodeType === 1) {
-                    angular.element(el).removeAttr('ui-layout-no-compile');
+                    angular.element(el).removeAttr('pagin-layout-no-compile');
                 }
             });
-            element.eq(0).removeAttr('ui-layout-start').removeAttr('ui-layout').removeAttr('data-ui-layout-start').removeAttr('data-ui-layout');
-            element.eq(element.length - 1).removeAttr('ui-layout-end').removeAttr('data-ui-layout-end');
+            element.eq(0).removeAttr('pagin-layout-start').removeAttr('pagin-layout').removeAttr('data-pagin-layout-start').removeAttr('data-pagin-layout');
+            element.eq(element.length - 1).removeAttr('pagin-layout-end').removeAttr('data-pagin-layout-end');
         }
 
         function makeCurrentPageGetterFn(scope, attrs, paginationId) {
@@ -144,11 +144,11 @@
         };
     }
 
-    function uiControlsTemplateInstaller($templateCache) {
-        $templateCache.put('pagin.html', '<style>.pagination>li>a, .pagination>li>span{padding: 1px 5px !important; border: none !important; color:black !important;}</style><ul ng-if="1 < pages.length || !autoHide" class="pagination"><li ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == 1 }"><a ng-click="setCurrent(1)">&lt;&lt; First</a></li><li ng-if="directionLinks" ng-class="{ disabled : pagination.current == 1 }"><a ng-click="setCurrent(pagination.current - 1)">&lt; Previous</a></li><li ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == \'...\' || ( ! autoHide && pages.length === 1 ) }"><a ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a></li><li ng-if="directionLinks" ng-class="{ disabled : pagination.current == pagination.last }"><a ng-click="setCurrent(pagination.current + 1)">Next &gt;</a></li><li ng-if="boundaryLinks"  ng-class="{ disabled : pagination.current == pagination.last }"><a ng-click="setCurrent(pagination.last)">Last &gt;&gt;</a></li></ul></span>');
+    function paginControlsTemplateInstaller($templateCache) {
+        $templateCache.put('pagin.html', '<style>.pagination>li>a, .pagination>li>span{padding: 1px 5px !important;color:black !important;border: none !important;}</style><div class="row"><ul ng-if="1 < pages.length || !autoHide" class="pagination"><li ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == 1 }"><a ng-click="setCurrent(1)">&lt;&lt; First</a></li><li ng-if="directionLinks" ng-class="{ disabled : pagination.current == 1 }"><a ng-click="setCurrent(pagination.current - 1)">&lt; Previous</a></li><li ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == \'...\' || ( ! autoHide && pages.length === 1 ) }"><a ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a></li><li ng-if="directionLinks" ng-class="{ disabled : pagination.current == pagination.last }"><a ng-click="setCurrent(pagination.current + 1)">Next &gt;</a></li><li ng-if="boundaryLinks"  ng-class="{ disabled : pagination.current == pagination.last }"><a ng-click="setCurrent(pagination.last)">Last &gt;&gt;</a></li></ul></div>');
     }
 
-    function uiControlsDirective(paginationService, paginationTemplate) {
+    function paginControlsDirective(paginationService, paginationTemplate) {
 
         var numberRegex = /^\d+$/;
 
@@ -160,7 +160,7 @@
                 paginationId: '=?',
                 autoHide: '=?'
             },
-            link: uiControlsLinkFn
+            link: paginControlsLinkFn
         };
 
         var templateString = paginationTemplate.getString();
@@ -173,7 +173,7 @@
         }
         return DDO;
 
-        function uiControlsLinkFn(scope, element, attrs) {
+        function paginControlsLinkFn(scope, element, attrs) {
             var rawId = attrs.paginationId ||  DEFAULT_ID;
             var paginationId = scope.paginationId || attrs.paginationId ||  DEFAULT_ID;
 
