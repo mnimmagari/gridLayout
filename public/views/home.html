@@ -1,5 +1,12 @@
-<div ng-app="mainApp" class="jumbotron text-center">
-	<h1>Home Page 4 Life</h1>
-
-	<p>{{ tagline }}</p>
+<div ng-app="mainApp">
+	<div class="row">
+		<div class="col-xs-4">
+			<label for="search">Search:</label>
+			<input ng-model="q" id="search" class="form-control" placeholder="Filter text">
+		</div>
+	</div>
+	<br>
+	<div pagin-layout="task in tasks | filter:q | itemsPerPage: itemsPerPage" total-items="totalcount" current-page="currentPage" card-layout data="task" tmpl="type"></div>
+	<br>
+	<div class="container"><pagin-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)"></pagin-controls></div>
 </div>

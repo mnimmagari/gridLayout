@@ -8,19 +8,29 @@
 		return {
 			template: '<ng-include src="getTemplateUrl()"/>',
 			scope: { 
-				user: '=data'
+				obj: '=data',
+				tmpl: '='
 			},
 			restrict: 'AE',
 			controller: function($scope) {
 				$scope.getTemplateUrl = function() {
-					if ($scope.user.association== "employee"){
+					if (!$scope.tmpl && $scope.obj.association== "employee"){
 						return "/public/templates/users/employee.html";
 					}
-					if ($scope.user.association== "customer"){
+					if (!$scope.tmpl && $scope.obj.association== "customer"){
 						return "/public/templates/users/customer.html";
 					}
-					if($scope.user.association== "" || $scope.user.association== undefined || $scope.user.association==null){
+					if (!$scope.tmpl && ($scope.obj.association== "" || $scope.obj.association== null || $scope.obj.association== undefined)){
 						return "/public/templates/users/default.html";
+					}
+					if ($scope.tmpl == "brief"){
+						return "/public/templates/tasks/brief.html";
+					}
+					if ($scope.tmpl == "long"){
+						return "/public/templates/tasks/long.html";
+					}
+					if ($scope.tmpl == "short"){
+						return "/public/templates/tasks/short.html";
 					}
 				}
 			}    	
