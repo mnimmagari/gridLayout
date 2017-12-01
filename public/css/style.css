@@ -12,13 +12,13 @@ body, html {
 .glyphicon {  margin-bottom: 10px;margin-right: 10px;}
 
 .def{
-	background-color: grey;
+	background-color: #f0f0f0;
 }
 .cust {
-	background:  #8cd98c;  
+	background:  #9fc3c6;
 }
 .emp {
-	background:  #9fc3c6;  
+	background:  grey;
 }
 
 
