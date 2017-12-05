@@ -11,14 +11,10 @@ module.exports = controller;
 function getAll(req,res){
   var perPage = 'itemsPerPage';
   var page = 'pagenumber';
-  var name = req.param('query');
-  var query = {
-     $or: [
-     { 'name.first' : new RegExp(name, 'i') },
-     { 'name.last' : new RegExp(name, 'i') },
-     { 'email' : new RegExp(name, 'i') }
-     ]
-    }
+  if(req.query.query!==undefined)
+  {
+    var query = JSON.parse(req.query.query);
+  }
   if(req.param('pagenumber')!==undefined)
   {
     var page = Math.max(0, req.param('pagenumber'));
