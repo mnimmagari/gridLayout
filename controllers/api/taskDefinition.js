@@ -1,6 +1,7 @@
 'use strict';
 
-var dataService     = require('../../services/taskDefinition');
+var model = require('../../model/taskDefinition')
+var dataService     = require('../../core/db/mongoAdapter')(model);
 
 var controller = {}
 
@@ -38,4 +39,3 @@ dataService.getAll(page,perPage,query)
   res.status(500).send(err);
 });
 }
-

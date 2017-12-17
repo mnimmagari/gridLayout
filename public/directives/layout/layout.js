@@ -7,7 +7,7 @@
 	function cardLayoutFn(){
 		return {
 			template: '<ng-include src="getTemplateUrl()"/>',
-			scope: { 
+			scope: {
 				obj: '=data',
 				tmpl: '='
 			},
@@ -33,7 +33,7 @@
 					// 	return "/public/templates/tasks/short.html";
 					// }
 				}
-			}    	
+			}
 
 		};
 	}

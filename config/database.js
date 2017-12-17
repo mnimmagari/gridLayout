@@ -1,9 +1,9 @@
 var mongoose      = require('mongoose');
 
-var databaseURI   = "mongodb://127.0.0.1:27017/direct"
+var databaseURI   = "mongodb://127.0.0.1:27017/esource_demo"
 
 // load models
-// 
+//
 // var models_path = __dirname + '/app/models'
 //fs.readdirSync(models_path).forEach(function (file) {
 //  if (~file.indexOf('.js')) require(models_path + '/' + file)

@@ -1,6 +1,8 @@
 'use strict';
 
-var dataService     = require('../../services/user');
+var model = require('../../model/user')
+var dataService     = require('../../core/db/mongoAdapter')(model);
+console.log('dataService is ', dataService);
 
 var controller = {}
 
@@ -23,7 +25,7 @@ function getAll(req,res){
   {
     var perPage = Math.min(25,req.param('itemsPerPage'));
   }
-    
+
   dataService.getAll(page,perPage,query)
     .then(function(userList){
         if (userList){
@@ -37,4 +39,3 @@ function getAll(req,res){
         res.status(500).send(err);
     });
 }
-
