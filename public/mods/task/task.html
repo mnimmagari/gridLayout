@@ -6,7 +6,10 @@
 		</div>
 	</div>
 	<br>
-	<div pagin-layout="task in tasks | filter:q | itemsPerPage: itemsPerPage" total-items="totalcount" current-page="currentPage" card-layout data="task" tmpl="type"></div>
+	<div pagin-layout="task in tasks | filter:q | itemsPerPage: itemsPerPage"
+		total-items="totalcount"
+		current-page="currentPage"
+		card-layout data="task" tmpl="type" func='thisFunction'></div>
 	<br>
 	<div class="container"><pagin-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)"></pagin-controls></div>
 </div>

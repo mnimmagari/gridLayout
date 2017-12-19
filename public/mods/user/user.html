@@ -9,8 +9,16 @@
 		</div>
 	</div>
 	<br>
-	<div pagin-layout="user in users | filter:q | itemsPerPage: itemsPerPage" total-items="totalcount" current-page="currentPage" card-layout data="user"></div>
+	<div pagin-layout="user in users | filter:q | itemsPerPage: itemsPerPage"
+		total-items="totalcount"
+		current-page="currentPage"
+		card-layout data="user" func='thisFunction'>
+
+			Hello {{$index}}
+	</div>
 	<br>
-	<div class="container"><pagin-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)"></pagin-controls></div>
+	<div class="container">
+		<pagin-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)"></pagin-controls>
+	</div>
 
 </div>

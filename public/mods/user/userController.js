@@ -8,8 +8,24 @@ angular.module('userApp', ['angular-pagin-layout','layout']).controller('userCon
         $scope.getResultsPage(newPage);
     };
 
+    $scope.thisFunction = function(index){
+  		console.log ('User Controller');
+      console.log($scope.users);
+      console.log(index);
+      return "/public/templates/users/employee.html";
+      if ($scope.users[index].association== "employee"){
+        return "/public/templates/users/employee.html";
+      }
+      if ($scope.users[index].association== "customer"){
+        return "/public/templates/users/customer.html";
+      }
+      if ($scope.users[index].association== "" || $scope.users[index].association== null || $scope.users[index].association== undefined){
+        return "/public/templates/users/default.html";
+      }
+  	};
+
     $scope.getResultsPage = function(newPage){
-          var query = {
+      var query = {
          $or: [
          {
           'email': {
