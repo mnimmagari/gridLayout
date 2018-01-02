@@ -1,15 +1,14 @@
 <div ng-app="mainApp">
-	<div class="row">
-		<div class="col-xs-4">
-			<label for="search">Search:</label>
-			<input ng-model="q" id="search" class="form-control" placeholder="Filter text">
-		</div>
-	</div>
-	<br>
-	<div pagin-layout="task in tasks | filter:q | itemsPerPage: itemsPerPage"
-		total-items="totalcount"
-		current-page="currentPage"
-		card-layout data="task" tmpl="type" func='thisFunction'></div>
-	<br>
-	<div class="container"><pagin-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)"></pagin-controls></div>
+  <div class="row">
+    <div class="col-xs-4">
+      <label for="search">Search:</label>
+      <input ng-model="q" id="search" class="form-control" placeholder="Filter text">
+    </div>
+  </div>
+  <br>
+  <div pagin-layout="task in tasks | filter:q | itemsPerPage: itemsPerPage" total-items="totalcount" current-page="currentPage" card-layout data="task" tmpl='thisFunction()' func='cardFn(task)'></div>
+  <br>
+  <div class="container">
+    <pagin-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)"></pagin-controls>
+  </div>
 </div>

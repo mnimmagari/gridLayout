@@ -1,19 +1,18 @@
 <div class="col-sm-6 col-md-3 col-lg-3 col-xs-12">
- <div class="tileblock ttilebrief">
-
-
-  <p class="title-job pmargin">{{obj.taskDefinition.taskTitle}}</p>
-
-  <div class="text-small">
-    <span class="pull-right text-xsmall">Posted On:&nbsp;{{obj.postedOn | date}}</span>
-  </div><br>
-  <div class="text-desc maxlines">{{obj.taskDefinition.taskDesc}}</div>
-  <hr class="hrstyle"/>
-  <div class="text-desc pull-right"><i class="glyphicon glyphicon-comment" aria-hidden="true" ng-click="saveTgroup(groupDescription,groupId)"></i></div>
-  <div class="text-desc pull-right"><i class="glyphicon glyphicon-duplicate" aria-hidden="true"></i></div>
-  <div class="text-desc pull-right"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></div>
-  <div class="text-desc pull-right"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></div>
-  <div class="text-desc pull-right"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></div>
-
-</div>
+  <div class="tileblock ttilebrief">
+    <a ng-href="/user">
+      <p class="title-job pmargin">{{obj.taskDefinition.taskTitle}}</p>
+    </a>
+    <div class="text-small">
+      <span class="pull-right text-xsmall">Posted On:&nbsp;{{obj.postedOn | date}}</span>
+    </div>
+    <br>
+    <div class="text-desc maxlines">{{obj.taskDefinition.taskDesc}}</div>
+    <hr class="hrstyle" />
+    <div class="text-desc pull-right"><i class="glyphicon glyphicon-comment" aria-hidden="true" ng-click="obj.action='comment';func(obj)"></i></div>
+    <div class="text-desc pull-right"><i class="glyphicon glyphicon-duplicate" aria-hidden="true" ng-click="obj.action='copy';func(obj)"></i></div>
+    <div class="text-desc pull-right"><i class="glyphicon glyphicon-user" aria-hidden="true" ng-click="obj.action='applicants';func(obj)"></i></div>
+    <div class="text-desc pull-right"><i class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="obj.action='delete';func(obj)"></i></div>
+    <div class="text-desc pull-right"><i class="glyphicon glyphicon-pencil" aria-hidden="true" ng-click="obj.action='pencil';func(obj)"></i></div>
+  </div>
 </div>
